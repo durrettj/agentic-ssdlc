@@ -1,0 +1,36 @@
+# Active configurations (use config.json.template instead)
+config.json
+
+# Local report files
+reports/
+*.log
+sast_report_*.md
+sbom_report_*.md
+sbom.json
+
+# Local Python Environments and dependencies
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+ssdlc-env/
+venv/
+ENV/
+
+# Credentials and Keys
+.ssh/
+.gnupg/
+*.pem
+*.key
+*.pub
+id_*
+gpg-batch.conf
+
+# OS Metadata
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.antigravitycli/
+brain/

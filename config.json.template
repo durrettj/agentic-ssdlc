@@ -1,0 +1,23 @@
+{
+  "project_name": "Aegis-Secured-Project",
+  "project_path": "{{PROJECT_PATH}}",
+  "environment": "development",
+  "sast": {
+    "semgrep_rules": "p/security-audit",
+    "trivy_secrets": true,
+    "gosec": true,
+    "govulncheck": true,
+    "fail_on_severity": "high"
+  },
+  "sbom": {
+    "format": "cyclonedx-json",
+    "output_dir": "{{AEGIS_DIR}}/reports",
+    "scan_vulnerabilities": true,
+    "fail_on_cve_severity": "high"
+  },
+  "git": {
+    "enforce_signed_commits": true,
+    "allowed_branches": ["main", "master", "develop", "feature/*"],
+    "require_sast_pass": true
+  }
+}
