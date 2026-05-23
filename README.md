@@ -64,16 +64,6 @@ chmod +x install.sh
 
 ---
 
-## 🛡️ Best Security Practices (Zero Credentials in Git)
-
-To guarantee that your secrets, credentials, and confidential code metrics are never pushed to a public remote, Aegis-SSDLC maintains a strict exclusion policy.
-
-### 🛑 DO NOT Commit:
-- **Private keys**: Ensure your GPG keys and SSH key pairs (`~/.ssh/id_*`, `~/.gnupg/`) remain local and never overlap with your repositories.
-- **Active configurations**: Never commit your `config.json` containing local directory parameters. Use the tracked `config.json.template` to share configuration updates.
-- **Reports**: Active security scans and software inventories contain internal layout details. These are added to `.gitignore` automatically.
-
----
 
 ## 🤖 Custom Security Agents Overview
 
