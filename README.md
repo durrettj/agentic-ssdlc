@@ -11,7 +11,7 @@ It provides automated Static Application Security Testing (SAST), Software Bill 
 ```text
 agentic-ssdlc/
 ├── .gitignore               # Strict security filters (prevents credential exposure)
-├── LICENSE                  # MIT open source license
+├── LICENSE                  # BSD 3-Clause open source license
 ├── README.md                # This setup & orchestration documentation
 ├── config.json.template     # Custom configuration template 
 ├── install.sh               # Smart, interactive shell installation script
@@ -100,4 +100,4 @@ When imported, you can invoke these specialized agents inside your Antigravity c
 ---
 
 ## ⚖️ License
-Licensed under the [MIT License](LICENSE).
+Licensed under the [BSD 3-Clause License](LICENSE).
