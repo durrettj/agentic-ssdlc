@@ -6,6 +6,14 @@ It provides automated Static Application Security Testing (SAST), Software Bill 
 
 ---
 
+## 🌐 Supported Languages & Ecosystems
+
+Aegis-SSDLC currently provides native, automated security support for the following environments:
+- **Go (Golang)**: Integrates AST-level vulnerability audits via **Gosec** and official security database matching with **Govulncheck** to secure standard library implementations and modern Go modules.
+- **Python**: Leverages deep static analysis, pattern matching, and secure-taint auditing using targeted **Semgrep** rulesets and dependency checks.
+
+---
+
 ## 📂 Repository Architecture
 
 ```text
