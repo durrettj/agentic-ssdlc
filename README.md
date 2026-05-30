@@ -1,6 +1,6 @@
-# Aegis-SSDLC — Secure Software Development Lifecycle Agentic Toolchain
+# Agentic-SSDLC — Secure Software Development Lifecycle Agentic Toolchain
 
-Aegis-SSDLC is a modular, agentic security orchestration suite designed to embed automated DevSecOps scanners and custom, specialized security subagents directly into your development workflow. 
+Agentic-SSDLC is a modular, agentic security orchestration suite designed to embed automated DevSecOps scanners and custom, specialized security subagents directly into your development workflow. 
 
 It provides automated Static Application Security Testing (SAST), Software Bill of Materials (SBOM) generation, supply chain CVE audits, and 6 purpose-built security subagents to automate security planning, secure coding, peer review, and secure git release management.
 
@@ -8,7 +8,7 @@ It provides automated Static Application Security Testing (SAST), Software Bill 
 
 ## 🌐 Supported Languages & Ecosystems
 
-Aegis-SSDLC currently provides native, automated security support for the following environments:
+Agentic-SSDLC currently provides native, automated security support for the following environments:
 - **Go (Golang)**: Integrates AST-level vulnerability audits via **Gosec** and official security database matching with **Govulncheck** to secure standard library implementations and modern Go modules.
 - **Python**: Leverages deep static analysis, pattern matching, and secure-taint auditing using targeted **Semgrep** rulesets and dependency checks.
 
@@ -24,8 +24,8 @@ agentic-ssdlc/
 ├── config.json.template     # Custom configuration template 
 ├── install.sh               # Smart, interactive shell installation script
 ├── bin/                     # Advanced dynamic scanning runners
-│   ├── aegis-sast.py        # Orchestrates Semgrep, Trivy, Gosec, and Govulncheck
-│   └── aegis-sbom.py        # Orchestrates Syft and Trivy SBOM vulnerability audits
+│   ├── agentic-ssdlc-sast.py # Orchestrates Semgrep, Trivy, Gosec, and Govulncheck
+│   └── agentic-ssdlc-sbom.py # Orchestrates Syft and Trivy SBOM vulnerability audits
 ├── templates/               # Standardized markdown report schemas
 │   ├── sast_report.md
 │   ├── sbom_report.md
@@ -87,10 +87,10 @@ When imported, you can invoke these specialized agents inside your Antigravity c
 - **Prompt Directive**: Independent line-by-line reviewer checking diffs for OWASP Top 10 weaknesses and ensuring STRIDE requirements are validated before merging.
 
 ### 4. `ssdlc_sast` (Automated Static Analysis Specialist)
-- **Prompt Directive**: Runs the automated `aegis-sast.py` runner to audit custom codebase rules, triages findings, and ensures the codebase compiles cleanly.
+- **Prompt Directive**: Runs the automated `agentic-ssdlc-sast.py` runner to audit custom codebase rules, triages findings, and ensures the codebase compiles cleanly.
 
 ### 5. `ssdlc_sbom` (Supply Chain Auditor)
-- **Prompt Directive**: Runs `aegis-sbom.py` to compile an inventory CycloneDX SBOM and verify that dependencies contain zero open blocking CVEs.
+- **Prompt Directive**: Runs `agentic-ssdlc-sbom.py` to compile an inventory CycloneDX SBOM and verify that dependencies contain zero open blocking CVEs.
 
 ### 6. `ssdlc_git` (Release Engineer & Gatekeeper)
 - **Prompt Directive**: Manages feature branches, stages commits safely, verifies that SAST and SBOM verdicts have passed, and pushes signed commits.

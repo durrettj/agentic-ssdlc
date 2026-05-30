@@ -1,6 +1,6 @@
 # Static Application Security Testing (SAST) Report
 
-## Project: Aegis-Secured-Project
+## Project: Agentic-Secured-Project
 **Scanner Agent**: `ssdlc_sast` (Agent)
 **Date**: [Insert Timestamp]
 **Status**: `[PASS / FAIL]`

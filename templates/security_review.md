@@ -1,6 +1,6 @@
 # Manual Security Code Review Report
 
-## Project: Aegis-Secured-Project
+## Project: Agentic-Secured-Project
 **Reviewer Agent**: `ssdlc_reviewer` (Agent)
 **Date**: [Insert Timestamp]
 **Target Files & Commits**: [Insert Target Files / Diffs]

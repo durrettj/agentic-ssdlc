@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # ==============================================================================
-#                      Aegis-SSDLC Installer Script
+#                      Agentic-SSDLC Installer Script
 # ==============================================================================
-# This script deploys the Aegis-SSDLC security toolchain and parameterizes the 
+# This script deploys the Agentic-SSDLC security toolchain and parameterizes the 
 # custom security subagents with correct local pathway environments.
 # ==============================================================================
 
@@ -17,18 +17,10 @@ CYAN='\033[0;36m'
 BOLD='\033[1m'
 NC='\033[0m' # No Color
 
-echo -e "${BOLD}${CYAN}"
-echo "    _                 _      _             ____  ____  ____  _      ____ "
-echo "   / \   ____  ____  / \  _ / \   _____   / ___|/ ___||  _ \| |    / ___|"
-echo "  / _ \ / _  |/ _  |/ /  (_)/ /  / ___/   \___ \\___ \| | | | |   | |    "
-echo " / ___ \ (_| | (_| / /_  _ / /_ (__  )     ___) |__) | |_| | |___| |___ "
-echo "/_/   \_\___ |\___ \____/ \____/____/     |____/____/|____/|_____|\____|"
-echo "        |___/ |___/                                                     "
-echo -e "                 - Defending Software Lifecycles -${NC}\n"
 
 # 1. Environment Detection
 USER_HOME=$(eval echo "~$USER")
-DEFAULT_INSTALL_DIR="${USER_HOME}/aegis-ssdlc"
+DEFAULT_INSTALL_DIR="${USER_HOME}/.agentic-ssdlc"
 
 echo -e "${BLUE}[*] Detecting environment...${NC}"
 echo -e "    - Current User: ${BOLD}${USER}${NC}"
@@ -79,9 +71,9 @@ echo -e "    - ${GREEN}✔${NC} Layout created under ${INSTALL_DIR}\n"
 echo -e "${BLUE}[*] Deploying scanning utilities and templates...${NC}"
 SCRIPT_SRC_DIR="$(dirname "$(readlink -f "$0")")"
 
-if [ -f "${SCRIPT_SRC_DIR}/bin/aegis-sast.py" ] && [ -f "${SCRIPT_SRC_DIR}/bin/aegis-sbom.py" ]; then
-    cp "${SCRIPT_SRC_DIR}/bin/aegis-sast.py" "${INSTALL_DIR}/bin/aegis-sast.py"
-    cp "${SCRIPT_SRC_DIR}/bin/aegis-sbom.py" "${INSTALL_DIR}/bin/aegis-sbom.py"
+if [ -f "${SCRIPT_SRC_DIR}/bin/agentic-ssdlc-sast.py" ] && [ -f "${SCRIPT_SRC_DIR}/bin/agentic-ssdlc-sbom.py" ]; then
+    cp "${SCRIPT_SRC_DIR}/bin/agentic-ssdlc-sast.py" "${INSTALL_DIR}/bin/agentic-ssdlc-sast.py"
+    cp "${SCRIPT_SRC_DIR}/bin/agentic-ssdlc-sbom.py" "${INSTALL_DIR}/bin/agentic-ssdlc-sbom.py"
     chmod +x "${INSTALL_DIR}/bin/"*.py
     echo -e "    - ${GREEN}✔${NC} Python scan runners copied and marked executable"
 else
@@ -166,11 +158,11 @@ echo ""
 
 # 8. Success Report
 echo -e "${GREEN}${BOLD}======================================================================${NC}"
-echo -e "${GREEN}${BOLD}              AEGIS-SSDLC INSTALLED SUCCESSFULLY!                     ${NC}"
+echo -e "${GREEN}${BOLD}            AGENTIC-SSDLC INSTALLED SUCCESSFULLY!                     ${NC}"
 echo -e "${GREEN}${BOLD}======================================================================${NC}"
 echo -e "  - Toolsuite Location:   ${BOLD}${INSTALL_DIR}${NC}"
-echo -e "  - SAST Scan Utility:    ${BOLD}python3 ${INSTALL_DIR}/bin/aegis-sast.py${NC}"
-echo -e "  - SBOM Scan Utility:    ${BOLD}python3 ${INSTALL_DIR}/bin/aegis-sbom.py${NC}"
+echo -e "  - SAST Scan Utility:    ${BOLD}python3 ${INSTALL_DIR}/bin/agentic-ssdlc-sast.py${NC}"
+echo -e "  - SBOM Scan Utility:    ${BOLD}python3 ${INSTALL_DIR}/bin/agentic-ssdlc-sbom.py${NC}"
 echo -e "  - Security Templates:   ${BOLD}${INSTALL_DIR}/templates/${NC}"
 echo -e "  - Parameterized Agents: ${BOLD}${TMP_AGENT_DIR}/${NC}"
 echo -e "  - Configuration:        ${BOLD}${INSTALL_DIR}/config.json${NC}"

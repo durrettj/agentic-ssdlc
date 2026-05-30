@@ -6,7 +6,7 @@ import shutil
 import subprocess
 from datetime import datetime
 
-# Determine the Home directory and base Aegis directory dynamically
+# Determine the Home directory and base Agentic directory dynamically
 HOME_DIR = os.path.expanduser("~")
 AEGIS_DIR = os.environ.get("AEGIS_DIR", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -160,7 +160,7 @@ def create_report(packages, vulnerabilities, project_path, fail_cve_severity):
     # Generate the Markdown file contents
     report_md = f"""# Software Bill of Materials (SBOM) & Supply Chain Security Report
 
-## Project: Aegis-Secured-Project
+## Project: Agentic-Secured-Project
 **Auditor Agent**: `ssdlc_sbom`
 **Date**: {timestamp}
 **Verdict**: {status}
@@ -210,11 +210,15 @@ def create_report(packages, vulnerabilities, project_path, fail_cve_severity):
 
 def main():
     print("=========================================")
-    print("      AEGIS-SBOM SECURITY AUDITOR        ")
+    print("    AGENTIC-SBOM SECURITY AUDITOR       ")
     print("=========================================")
     
     config = load_config()
-    project_path = config.get("project_path", HOME_DIR)
+    project_path = os.path.abspath(os.path.expanduser(config.get("project_path", HOME_DIR)))
+    if not os.path.isdir(project_path):
+        print(f"[-] Error: Scanned project_path does not exist or is not a directory: {project_path}")
+        sys.exit(1)
+        
     sbom_config = config.get("sbom", {})
     
     fail_cve_severity = sbom_config.get("fail_on_cve_severity", "high")

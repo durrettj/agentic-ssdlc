@@ -1,6 +1,6 @@
 # Software Bill of Materials (SBOM) & Supply Chain Security Report
 
-## Project: Aegis-Secured-Project
+## Project: Agentic-Secured-Project
 **Auditor Agent**: `ssdlc_sbom` (Agent)
 **Date**: [Insert Timestamp]
 **Status**: `[PASS / FAIL]`

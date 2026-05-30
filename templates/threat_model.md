@@ -1,6 +1,6 @@
 # Threat Model & Secure Architecture Specification
 
-## Project: Aegis-Secured-Project
+## Project: Agentic-Secured-Project
 **Author**: `ssdlc_planner` (Agent)
 **Date**: [Insert Timestamp]
 **Scope**: [Describe Feature / Scope]

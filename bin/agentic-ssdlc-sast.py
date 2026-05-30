@@ -6,7 +6,7 @@ import shutil
 import subprocess
 from datetime import datetime
 
-# Determine the Home directory and base Aegis directory dynamically
+# Determine the Home directory and base Agentic directory dynamically
 HOME_DIR = os.path.expanduser("~")
 AEGIS_DIR = os.environ.get("AEGIS_DIR", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -48,9 +48,9 @@ def check_go_project(project_path):
                 return True
     return False
 
-def run_command(cmd, shell=False):
+def run_command(cmd, shell=False, cwd=None):
     try:
-        res = subprocess.run(cmd, shell=shell, capture_output=True, text=True, check=False)
+        res = subprocess.run(cmd, shell=shell, capture_output=True, text=True, check=False, cwd=cwd)
         return res.stdout, res.stderr, res.returncode
     except Exception as e:
         return "", str(e), -1
@@ -131,8 +131,8 @@ def run_gosec(project_path):
         return []
     
     # Run gosec inside the project path
-    cmd = f"{GOSEC_BIN} -fmt=json -no-fail ...."
-    stdout, stderr, code = run_command(cmd, shell=True)
+    cmd = [GOSEC_BIN, "-fmt=json", "-no-fail", "./..."]
+    stdout, stderr, code = run_command(cmd, shell=False, cwd=project_path)
     
     findings = []
     try:
@@ -159,15 +159,15 @@ def run_govulncheck(project_path):
         print(f"[-] Warning: govulncheck binary not found. Skipping govulncheck scan.")
         return []
     
-    cmd = f"{GOVULNCHECK_BIN} -json ./..."
-    stdout, stderr, code = run_command(cmd, shell=True)
+    cmd = [GOVULNCHECK_BIN, "-json", "./..."]
+    stdout, stderr, code = run_command(cmd, shell=False, cwd=project_path)
     
     findings = []
-    try:
-        # govulncheck outputs multiple JSON objects separated by newlines
-        for line in stdout.splitlines():
-            if not line.strip():
-                continue
+    # govulncheck outputs multiple JSON objects separated by newlines
+    for line in stdout.splitlines():
+        if not line.strip():
+            continue
+        try:
             data = json.loads(line)
             # Find finding items
             finding_data = data.get("finding")
@@ -189,8 +189,10 @@ def run_govulncheck(project_path):
                     "message": message,
                     "code": f"Imported module: {finding_data.get('module')}"
                 })
-    except Exception as e:
-        print(f"[-] Govulncheck parsing error: {e}")
+        except json.JSONDecodeError:
+            continue # skip non-JSON warning/text lines
+        except Exception as e:
+            print(f"[-] Unexpected error parsing govulncheck output line: {e}")
     return findings
 
 def create_report(findings, project_path, fail_severity):
@@ -244,9 +246,9 @@ def create_report(findings, project_path, fail_severity):
     status = "FAIL 🛑" if has_blocking else "PASS  [SECURE]"
     
     # Generate the Markdown file contents
-    report_md = f"""# Aegis SAST Automated Code Scan Report
+    report_md = f"""# Agentic-SSDLC SAST Automated Code Scan Report
 
-## Project: Aegis-Secured-Project
+## Project: Agentic-Secured-Project
 **Scanner Agent**: `ssdlc_sast`
 **Date**: {timestamp}
 **Verdict**: {status}
@@ -298,11 +300,15 @@ def create_report(findings, project_path, fail_severity):
 
 def main():
     print("=========================================")
-    print("      AEGIS-SAST SECURITY RUNNER         ")
+    print("    AGENTIC-SAST SECURITY RUNNER        ")
     print("=========================================")
     
     config = load_config()
-    project_path = config.get("project_path", HOME_DIR)
+    project_path = os.path.abspath(os.path.expanduser(config.get("project_path", HOME_DIR)))
+    if not os.path.isdir(project_path):
+        print(f"[-] Error: Scanned project_path does not exist or is not a directory: {project_path}")
+        sys.exit(1)
+        
     sast_config = config.get("sast", {})
     
     semgrep_rules = sast_config.get("semgrep_rules", "p/security-audit")
