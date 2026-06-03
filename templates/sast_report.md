@@ -45,6 +45,6 @@
 ---
 
 ## 4. Scan Metadata & Sign-Off
-* **Scanned Path**: `/home/jed`
+* **Scanned Path**: `.`
 * **Vulnerability Threshold Blocking Policy**: Fail on `[High / Critical]`
 * **Scanner Engine Command**: `[Exact CLI command run]`
